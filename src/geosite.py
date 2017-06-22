@@ -6,7 +6,7 @@ from .locale import Locale
 
 class Geosite:
     def __init__(self, tag):
-        self.url = f'https:{tag.get("href")}'
+        self.url = 'https:{}'.format(tag.get("href"))
         self.state = tag.text
 
     @staticmethod

@@ -27,7 +27,7 @@ class Query:
         return result
 
     def process_next_page_parameters(self, next_page_parameters):
-        url = f'{self.category.locale.url}/search/{self.category.id}'
+        url = '{}/search/{}'.format(self.category.locale.url, self.category.id)
         r = requests.get(url, params=next_page_parameters)
         assert 200 == r.status_code
         self._result_index = self._scraper.scrape(r)
