@@ -1,3 +1,5 @@
+import re
+
 from bs4 import BeautifulSoup
 import requests
 
@@ -8,6 +10,8 @@ from .category import Category
 class Locale:
     def __init__(self, tag):
         self.url = tag.get('href')
+        if None is re.match(r'https:', self.url):
+            self.url = 'https:{}'.format(self.url)
         self.name = tag.text
 
     @property
