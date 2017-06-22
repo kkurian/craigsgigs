@@ -9,10 +9,6 @@ class ModelsBase:
     """
 
     def __init__(self, database, model_names):
-        if type(database) != peewee.SqliteDatabase:
-            raise RuntimeError(
-                'Not using SqliteDatabase. Consider switching to a native '
-                'JSONField implementation.')
         self._base_model = None
         self._database = database
         self._database.connect()
@@ -24,7 +20,7 @@ class ModelsBase:
         self._database.create_tables(models, True)
 
     @property
-    def BaseModel(self):
+    def BaseModel(self):  # NOQA
         if self._base_model is None:
             class BaseModel(peewee.Model):
                 class Meta:
